@@ -10,7 +10,7 @@ public class B2_2_5 {
         double diff = Math.abs(num1-num2);
         double product = num1 * num2;
         String Noti;
-        if (num2 == 0) Noti = "Not valid";
+        if (num2 == 0) Noti = "Invalid";
         else Noti = (double)num1/num2 + "";
         JOptionPane.showMessageDialog(null, "Sum: " + sum + "\nDifference: " + diff + "\nProduct: " + product + "\nQuotient: " + Noti, "Result", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);

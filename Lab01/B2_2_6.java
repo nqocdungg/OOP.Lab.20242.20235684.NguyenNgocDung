@@ -55,7 +55,7 @@ public class B2_2_6 {
         else {
             double x = D1/D;
             double y = D2/D;
-            JOptionPane.showMessageDialog(null, "Solution of the system: x = " + x + "and y = " + y);
+            JOptionPane.showMessageDialog(null, "Solution of the system: x = " + x + " and y = " + y);
         }
     }
     private static void QuadraticEquationSolve(){
@@ -76,8 +76,8 @@ public class B2_2_6 {
         }
         else {
             double x1 = (-b + Math.sqrt(delta))/(2*a);
-            double x2 = (-b + Math.sqrt(delta))/(2*a);
-            JOptionPane.showMessageDialog(null, "The equation has two solutions: x1 = " + x1 + "and x2 = " + x2);
+            double x2 = (-b - Math.sqrt(delta))/(2*a);
+            JOptionPane.showMessageDialog(null, "The equation has two solutions: x1 = " + x1 + " and x2 = " + x2);
         }
     }
 }
