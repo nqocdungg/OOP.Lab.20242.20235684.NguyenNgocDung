@@ -1,0 +1,44 @@
+- What class should implement the Comparable interface?
+The Media class should implement the Comparable interface.
+Because all media types (Book, CompactDisc, DigitalVideoDisc) extend Media, they will inherit the compareTo() method.
+
+- In those classes, how should you implement the compareTo()method to reflect the ordering that we want?
+In Media, compare first by title (alphabetical). If titles are the same, compare by cost (higher cost first).
+@Override
+    public int compareTo(Media other) {
+        int titleComparison = this.getTitle().compareToIgnoreCase(other.getTitle());
+        if (titleComparison != 0) {
+            return titleComparison;
+        } else {
+            return Float.compare(other.getCost(), this.getCost());
+        }
+    } 
+
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+No. Comparable only supports one natural ordering.
+If we want multiple sorting ways, we need to create Comparator classes, then use Collections.sort(list, comparator) with the desired Comparator. 
+
+- Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+Override compareTo() method inside the DigitalVideoDisc class:
++ When comparing two DVDs → use special ordering (title, then decreasing length, then cost).
++ Otherwise, fallback to Media's default ordering.
+public class DigitalVideoDisc extends Disc {
+
+    @Override
+    public int compareTo(Media other) {
+        if (other instanceof DigitalVideoDisc) {
+            DigitalVideoDisc o = (DigitalVideoDisc) other;
+            int titleCompare = this.getTitle().compareToIgnoreCase(o.getTitle());
+            if (titleCompare != 0) {
+                return titleCompare;
+            }
+            int lengthCompare = Integer.compare(o.getLength(), this.getLength());
+            if (lengthCompare != 0) {
+                return lengthCompare;
+            }
+            return Float.compare(this.getCost(), o.getCost());
+        }
+        return super.compareTo(other); 
+    }
+}
+
